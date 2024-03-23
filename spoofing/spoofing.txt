@@ -1,1 +1,5 @@
 Briefly explain the vulnerability and why the secure version prevents the vulnerability.
+
+The vulnerability in the insecure version of the code lies in the session management configuration. Specifically, the session cookies are not marked as secure and can be transmitted over insecure channels, making them vulnerable to session hijacking attacks like session fixation or session spoofing.
+
+In the secure version, the session cookies are configured with the httpOnly attribute set to true, and the session secret key is provided as a command-line argument. These measures enhance security by ensuring that session cookies are only sent over HTTPS and are not accessible to client-side scripts, thus mitigating the risk of session spoofing attacks. Also, using a securely generated session secret key helps prevent unauthorized access to session data.

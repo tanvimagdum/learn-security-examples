@@ -1,0 +1,3 @@
+The vulnerability in the insecure version lies in the lack of input sanitization, allowing for HTML injection attacks (also known as cross-site scripting or XSS). This vulnerability enables attackers to inject malicious scripts into the web page, potentially leading to session hijacking or unauthorized access to sensitive data.
+
+ The secure version prevents this vulnerability by implementing input sanitization using the escapeHTML function. This function escapes special HTML characters in user input, rendering injected scripts harmless. As a result, the secure version mitigates the risk of tampering attacks by ensuring that user input is properly sanitized before being displayed on the web page.
