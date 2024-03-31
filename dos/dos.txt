@@ -1,2 +1,9 @@
 - Briefly explain the vulnerability and why the secure version prevents the vulnerability.
 - What additional security mechanisms can you incorporate to prevent such attacks?
+
+The vulnerability in the insecure.js version lies in its lack of error handling when querying the database. Malicious users can exploit this vulnerability by repeatedly sending requests with invalid or malicious id parameters, causing the server to consume excessive resources trying to process the requests. This can result in a DoS attack, where legitimate users are unable to access the application due to resource exhaustion.
+The secure.js version addresses these vulnerabilities by implementing proper error handling and input validation mechanisms. It uses a try-catch block to catch any errors that occur during the database query. If an error occurs, the application returns a 400 Bad Request response, indicating that the input provided by the user is invalid or malformed. This prevents the application from crashing and leaking sensitive information in case of unexpected errors.
+
+Additional security mechanisms:
+1. Implement input validation mechanisms to ensure that user-entered data meets expected criteria before processing it. This can include validating input formats, data types, length limits, and sanitizing inputs to prevent injection attacks.
+2. Implement rate-limiting mechanisms to restrict the number of requests a user can make within a certain time period. This helps prevent DoS attacks by limiting the rate at which malicious users can send requests to the server.

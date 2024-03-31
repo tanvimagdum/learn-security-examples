@@ -1,2 +1,11 @@
 - Briefly explain the vulnerability and why the secure version is better at preventing repudiation than the insecure version.
 - What additional security mechanisms can you incorporate to prevent such attacks?
+
+The vulnerability lies in insecure.js as it does not implement any form of logging or authentication to verify the identity of users accessing the endpoint. Meaning, anyone including unauthorized users, can access the endpoint and retrieve messages without any accountability or traceability. So if a user denies sending a message, there's no way to verify their claim because there's no logging mechanism to track message retrievals or user activity.
+secure.js addresses the vulnerability by implementing a logging mechanism using the fs module to write access logs to a file (server.log) whenever the endpoint is accessed. This provides a way to trace and verify user activity, thereby preventing repudiation attacks.
+
+Additional security mechanisms:
+1. Maintain user sessions securely to track user activity and associate requests with authenticated users.
+2. Use a robust authentication mechanism such as JSON Web Tokens (JWT) or OAuth to authenticate users before allowing access to sensitive endpoints.
+3. Extend logging to capture detailed information about user activities, including actions performed, timestamps, IP addresses, and user identifiers.
+4. Conduct regular security assessments and code reviews to identify and address potential vulnerabilities proactively.

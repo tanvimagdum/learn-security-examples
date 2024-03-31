@@ -1,3 +1,14 @@
 Briefly explain the vulnerability and why the secure version prevents the vulnerability.
 Which CIA property does tampering violate?
 What additional security mechanisms can you incorporate?
+
+The vulnerability lies in the lack of input validation and sanitization when querying the database for user information. insecure.js directly uses the req.query.username value without any validation, allowing potential injection attacks or exploitation of input format vulnerabilities. An attacker could manipulate the username parameter to perform various attacks, such as SQL injection, NoSQL injection, or other injection-based attacks, leading to unauthorized access to user information or even data manipulation.
+secure.js addresses the vulnerability by implementing input validation and sanitization before querying the database for user information. It checks the type of the username parameter and ensures it is a string. It sanitizes the username by removing any non-alphanumeric characters using a regular expression. By validating and sanitizing the input, secure.js prevents injection attacks and ensures that only properly formatted and sanitized input is used in the database query, hence mitigating the risk of info disclosure vulnerabilities.
+
+CIA property violated by tampering:
+Tampering violates the integrity aspect of the CIA. The integrity of the data is compromised when an attacker can modify or tamper with the data.
+
+Additional security mechanisms:
+1. Implement robust input validation mechanisms to ensure that user input adheres to expected formats and constraints.
+2. Encrypt sensitive data stored in the database to protect it from unauthorized access or tampering.
+3. Instead of directly interpolating user input into the query, use parameterized queries or prepared statements to prevent injection attacks.
